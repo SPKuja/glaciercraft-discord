@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import asyncio
 import os
-from mcstatus import MinecraftBedrockServer
+from mcstatus import JavaServer, BedrockServer
 
 # Get Discord bot token, channel ID, and Minecraft server info from environment variables
 TOKEN = os.getenv('TOKEN')
@@ -14,10 +14,10 @@ SERVER_PORT = int(os.getenv('SERVER_PORT', 19132))  # Default Bedrock port is 19
 MINECRAFT_BEDROCK_URL = "https://www.minecraft.net/en-us/download/server/bedrock"
 last_known_link = None
 
-# Function to check if the Minecraft Bedrock server is online (using mcstatus)
+# Function to check if the Minecraft Bedrock server is online (using mcstatus 2.x)
 def is_bedrock_server_online(host: str, port: int = 19132):
     try:
-        server = MinecraftBedrockServer.lookup(f"{host}:{port}")
+        server = BedrockServer(host, port)
         status = server.status()
         return f"The server is online with {status.players_online} players."
     except Exception as e:
