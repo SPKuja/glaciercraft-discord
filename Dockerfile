@@ -4,7 +4,7 @@ FROM python:3.9-slim
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Install dependencies for requests, discord.py, BeautifulSoup, and mcstatus
+# Install dependencies for discord.py, beautifulsoup, requests, and the latest version of mcstatus
 RUN pip install --no-cache-dir discord.py beautifulsoup4 requests mcstatus
 
 # Copy the bot script into the container
